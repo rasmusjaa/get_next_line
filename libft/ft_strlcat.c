@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/21 16:00:36 by rjaakonm          #+#    #+#             */
-/*   Updated: 2019/10/28 15:36:10 by rjaakonm         ###   ########.fr       */
+/*   Created: 2019/10/16 13:16:47 by rjaakonm          #+#    #+#             */
+/*   Updated: 2019/10/19 16:43:37 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft.h"
-# define BUFF_SIZE 1
-# define MAX_FD 4864
+#include "libft.h"
 
-int	get_next_line(const int fd, char **line);
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
+{
+	size_t i;
+	size_t j;
 
-#endif
+	i = 0;
+	j = 0;
+	while (dst[i] && i < size)
+		i++;
+	if (dst[i] == '\0')
+	{
+		while (src[j] && i < size - 1)
+		{
+			dst[i] = src[j];
+			i++;
+			j++;
+		}
+		dst[i] = '\0';
+	}
+	while (src[j])
+	{
+		i++;
+		j++;
+	}
+	return (i);
+}

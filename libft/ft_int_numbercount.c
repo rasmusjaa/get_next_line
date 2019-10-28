@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_int_numbercount.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/21 16:00:36 by rjaakonm          #+#    #+#             */
-/*   Updated: 2019/10/28 15:36:10 by rjaakonm         ###   ########.fr       */
+/*   Created: 2019/10/19 17:10:04 by rjaakonm          #+#    #+#             */
+/*   Updated: 2019/10/19 17:54:05 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft.h"
-# define BUFF_SIZE 1
-# define MAX_FD 4864
+int		ft_int_numbercount(int n)
+{
+	long	nb;
+	int		count;
 
-int	get_next_line(const int fd, char **line);
-
-#endif
+	nb = n;
+	count = 1;
+	if (nb < 0)
+	{
+		count++;
+		nb = nb * -1;
+	}
+	while (nb > 9)
+	{
+		count++;
+		nb = nb / 10;
+	}
+	return (count);
+}

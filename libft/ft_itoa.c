@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rjaakonm <rjaakonm@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/21 16:00:36 by rjaakonm          #+#    #+#             */
-/*   Updated: 2019/10/28 15:36:10 by rjaakonm         ###   ########.fr       */
+/*   Created: 2019/10/16 13:21:47 by rjaakonm          #+#    #+#             */
+/*   Updated: 2019/10/19 18:07:55 by rjaakonm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include <stdlib.h>
-# include <unistd.h>
-# include "libft.h"
-# define BUFF_SIZE 1
-# define MAX_FD 4864
+#include "libft.h"
 
-int	get_next_line(const int fd, char **line);
+char	*ft_itoa(int n)
+{
+	long	nb;
+	char	*res;
+	int		chars;
 
-#endif
+	nb = n;
+	chars = ft_int_numbercount(n);
+	if (!(res = (char*)malloc(sizeof(char) * (chars + 1))))
+		return (NULL);
+	if (nb < 0)
+	{
+		nb = nb * -1;
+		res[0] = '-';
+	}
+	res[chars] = '\0';
+	chars--;
+	while (nb > 9)
+	{
+		res[chars] = nb % 10 + '0';
+		nb = nb / 10;
+		chars--;
+	}
+	res[chars] = nb % 10 + '0';
+	return (res);
+}
